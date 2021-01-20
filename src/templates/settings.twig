@@ -1,0 +1,50 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.lightswitchField({
+    label: "Enable"|t('craft-ray'),
+    instructions: "Whether data should be sent to Ray."|t('craft-ray'),
+    id: 'enable',
+    name: 'enable',
+    on: settings.enable,
+    errors: settings.getErrors('enable')
+}) }}
+
+{{ forms.autosuggestField({
+    label: "Host"|t('craft-ray'),
+    instructions: "The host used to communicate with the Ray app."|t('craft-ray'),
+    id: 'host',
+    name: 'host',
+    value: settings.host,
+    suggestEnvVars: true,
+    errors: settings.getErrors('host')
+}) }}
+
+{{ forms.autosuggestField({
+    label: "Port"|t('craft-ray'),
+    instructions: "The port number used to communicate with the Ray app."|t('craft-ray'),
+    id: 'port',
+    name: 'port',
+    value: settings.port,
+    suggestEnvVars: true,
+    errors: settings.getErrors('port')
+}) }}
+
+{{ forms.autosuggestField({
+    label: "Remote path"|t('craft-ray'),
+    instructions: "Absolute base path for your sites or projects in Homestead, Vagrant, Docker, or another remote development server."|t('craft-ray'),
+    id: 'remote_path',
+    name: 'remote_path',
+    value: settings.remote_path,
+    suggestEnvVars: true,
+    errors: settings.getErrors('remote_path')
+}) }}
+
+{{ forms.autosuggestField({
+    label: "Local path"|t('craft-ray'),
+    instructions: "Absolute base path for your sites or projects on your local computer where your IDE or code editor is running on."|t('craft-ray'),
+    id: 'local_path',
+    name: 'local_path',
+    value: settings.local_path,
+    suggestEnvVars: true,
+    errors: settings.getErrors('local_path')
+}) }}
