@@ -2,7 +2,7 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/spatie/craft-ray.svg?style=flat-square)](https://packagist.org/packages/spatie/craft-ray)
 ![Tests](https://github.com/spatie/craft-ray/workflows/Tests/badge.svg)
-[![Total Downloads](https://img.shields.io/packagist/dt/spatie/laravel-ray.svg?style=flat-square)](https://packagist.org/packages/spatie/craft-ray)
+[![Total Downloads](https://img.shields.io/packagist/dt/spatie/craft-ray.svg?style=flat-square)](https://packagist.org/packages/spatie/craft-ray)
 
 This package can be installed in any PHP application to send messages to [the Ray app](https://myray.app).
 
