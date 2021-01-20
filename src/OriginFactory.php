@@ -6,7 +6,6 @@ use Craft;
 use craft\helpers\StringHelper;
 use Spatie\Backtrace\Backtrace;
 use Spatie\Backtrace\Frame;
-use Spatie\CraftRay\twigextensions\RayVariable;
 use Spatie\Ray\Origin\DefaultOriginFactory;
 use Spatie\Ray\Origin\Origin;
 use Spatie\Ray\Ray;

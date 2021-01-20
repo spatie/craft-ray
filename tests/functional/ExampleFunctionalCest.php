@@ -2,7 +2,6 @@
 
 namespace spatiecraftray\raytests\acceptance;
 
-use Craft;
 use FunctionalTester;
 
 class ExampleFunctionalCest

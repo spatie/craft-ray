@@ -11,9 +11,9 @@
 namespace spatiecraftray\raytests\unit;
 
 use Codeception\Test\Unit;
-use UnitTester;
 use Craft;
 use spatiecraftray\ray\Ray;
+use UnitTester;
 
 /**
  * ExampleUnitTest

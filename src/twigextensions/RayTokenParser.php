@@ -2,16 +2,11 @@
 
 namespace Spatie\CraftRay\twigextensions;
 
-use Twig\Error\SyntaxError;
-use Twig\Node\Node;
-use Twig\Parser;
 use Twig\Token;
 use Twig\TokenParser\AbstractTokenParser;
-use Twig\TokenParser\TokenParserInterface;
 
 class RayTokenParser extends AbstractTokenParser
 {
-
     public function parse(Token $token)
     {
         $lineno = $token->getLine();

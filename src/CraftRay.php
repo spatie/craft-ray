@@ -10,11 +10,11 @@
 
 namespace Spatie\CraftRay;
 
-use Spatie\CraftRay\twigextensions\RayTwigExtension;
-use Spatie\CraftRay\models\Settings;
-
 use Craft;
 use craft\base\Plugin;
+
+use Spatie\CraftRay\models\Settings;
+use Spatie\CraftRay\twigextensions\RayTwigExtension;
 
 use Spatie\Ray\Client;
 use Spatie\Ray\Payloads\Payload;
@@ -111,7 +111,7 @@ class CraftRay extends Plugin
         return Craft::$app->view->renderTemplate(
             'craft-ray/settings',
             [
-                'settings' => $this->getSettings()
+                'settings' => $this->getSettings(),
             ]
         );
     }
