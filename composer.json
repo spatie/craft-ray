@@ -21,7 +21,7 @@
         }
     ],
     "require": {
-        "php": "^7.3|^8.0",
+        "php": "^7.3|^7.4|^8.0",
         "craftcms/cms": "^3.0.0",
         "spatie/ray": "^1.14",
         "spatie/yii-ray": "^1.1"
