@@ -23,8 +23,8 @@
     "require": {
         "php": "^7.3|^7.4|^8.0",
         "craftcms/cms": "^3.0.0",
-        "spatie/ray": "^1.14",
-        "spatie/yii-ray": "^1.1"
+        "spatie/ray": "^1.19",
+        "spatie/yii-ray": "^1.2"
     },
     "require-dev": {
       "codeception/codeception": "^3.0",
