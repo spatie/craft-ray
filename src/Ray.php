@@ -2,8 +2,8 @@
 
 namespace Spatie\CraftRay;
 
-use Craft;
 use Composer\InstalledVersions;
+use Craft;
 use Spatie\Ray\Ray as BaseRay;
 use Spatie\YiiRay\Ray as YiiRay;
 
