@@ -46,8 +46,8 @@ class RayTwigExtension extends AbstractExtension implements GlobalsInterface
     public function getFilters()
     {
         return [
-            new TwigFilter('ray', function ($params) {
-                return ray($params);
+            new TwigFilter('ray', function (...$params) {
+                return ray(...$params);
             }),
         ];
     }
@@ -58,8 +58,8 @@ class RayTwigExtension extends AbstractExtension implements GlobalsInterface
     public function getFunctions()
     {
         return [
-            new TwigFunction('ray', function ($params) {
-                return ray($params);
+            new TwigFunction('ray', function (...$params) {
+                return ray(...$params);
             }),
         ];
     }
