@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.4 - 2021-03-05
+### Fixed
+- Fixed an issue where passing multiple parameters to the Twig function would only result in one Ray entry
+- Fixed an issue where host & port setting wouldn't end up correctly in the Ray client
+
 ## 1.1.3 - 2021-02-12
 ### Added
 - Fix enabled state
