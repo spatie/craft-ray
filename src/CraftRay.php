@@ -69,8 +69,7 @@ class CraftRay extends Plugin
 
         Craft::$app->view->registerTwigExtension(new RayTwigExtension());
 
-        Yii::$container->set(Ray::class, function () {
-            $client = Yii::$container->get(Client::class);
+        Yii::$container->setSingleton(Ray::class, function () {
             $craftRaySettings = CraftRay::getInstance()->getSettings();
             $settings = new \Spatie\Ray\Settings\Settings([
                 'enable' => $craftRaySettings->enable,
@@ -80,7 +79,7 @@ class CraftRay extends Plugin
                 'local_path' => $craftRaySettings->local_path,
             ]);
 
-            $ray = new Ray($settings, $client);
+            $ray = new Ray($settings);
 
             if (! $settings->enable) {
                 $ray->disable();
