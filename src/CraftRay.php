@@ -16,7 +16,6 @@ use craft\base\Plugin;
 use Spatie\CraftRay\models\Settings;
 use Spatie\CraftRay\twigextensions\RayTwigExtension;
 
-use Spatie\Ray\Client;
 use Spatie\Ray\Payloads\Payload;
 use Yii;
 
