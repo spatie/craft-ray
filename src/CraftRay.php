@@ -68,7 +68,7 @@ class CraftRay extends Plugin
 
         Craft::$app->view->registerTwigExtension(new RayTwigExtension());
 
-        Yii::$container->setSingleton(Ray::class, function () {
+        Yii::$container->set(Ray::class, function () {
             $craftRaySettings = CraftRay::getInstance()->getSettings();
             $settings = new \Spatie\Ray\Settings\Settings([
                 'enable' => $craftRaySettings->enable,

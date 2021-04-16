@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.5 - 2021-04-16
+### Fixed
+- Fixed an issue where only the last Ray call in a request was output to the screen
+
+
 ## 1.1.4 - 2021-03-05
 ### Fixed
 - Fixed an issue where passing multiple parameters to the Twig function would only result in one Ray entry
