@@ -64,7 +64,7 @@ class RayTwigExtension extends AbstractExtension implements GlobalsInterface
         ];
     }
 
-    public function getGlobals()
+    public function getGlobals(): array
     {
         return [
             'ray' => new RayVariable,

@@ -21,13 +21,12 @@
         }
     ],
     "require": {
-        "php": "^7.3|^7.4|^8.0",
-        "craftcms/cms": "^3.0.0|^4.0",
-        "spatie/ray": "^1.19",
+        "php": "^8.0",
+        "craftcms/cms": "^4.0",
+        "spatie/ray": "^1.34",
         "spatie/yii-ray": "^1.2"
     },
     "require-dev": {
-      "codeception/codeception": "^3.0",
       "vlucas/phpdotenv": "^3.0"
     },
     "autoload": {
@@ -43,5 +42,7 @@
         "documentationUrl": "https://github.com/spatie/craft-ray/blob/master/README.md",
         "changelogUrl": "https://raw.githubusercontent.com/spatie/craft-ray/master/CHANGELOG.md",
         "class": "Spatie\\CraftRay\\CraftRay"
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

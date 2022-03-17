@@ -1,11 +1,11 @@
 <?php
 /**
- * ray plugin for Craft CMS 3.x
+ * ray plugin for Craft CMS 4.x
  *
  * Easily debug CraftCMS projects
  *
  * @link      https://spatie.be
- * @copyright Copyright (c) 2021 Spatie
+ * @copyright Copyright (c) 2022 Spatie
  */
 
 namespace Spatie\CraftRay;
@@ -19,48 +19,14 @@ use Spatie\CraftRay\twigextensions\RayTwigExtension;
 use Spatie\Ray\Payloads\Payload;
 use Yii;
 
-/**
- * Class Ray
- *
- * @author    Spatie
- * @package   Ray
- * @since     1.0.0
- *
- */
 class CraftRay extends Plugin
 {
-    // Static Properties
-    // =========================================================================
-
-    /**
-     * @var CraftRay
-     */
     public static $plugin;
 
-    // Public Properties
-    // =========================================================================
+    public bool $hasCpSettings = true;
 
-    /**
-     * @var string
-     */
-    public $schemaVersion = '1.0.0';
+    public bool $hasCpSection = false;
 
-    /**
-     * @var bool
-     */
-    public $hasCpSettings = true;
-
-    /**
-     * @var bool
-     */
-    public $hasCpSection = false;
-
-    // Public Methods
-    // =========================================================================
-
-    /**
-     * @inheritdoc
-     */
     public function init()
     {
         parent::init();
@@ -96,7 +62,7 @@ class CraftRay extends Plugin
     /**
      * @inheritdoc
      */
-    protected function createSettingsModel(): Settings
+    protected function createSettingsModel(): ?\craft\base\Model
     {
         return new Settings();
     }
@@ -104,7 +70,7 @@ class CraftRay extends Plugin
     /**
      * @inheritdoc
      */
-    protected function settingsHtml(): string
+    protected function settingsHtml(): ?string
     {
         return Craft::$app->view->renderTemplate(
             'craft-ray/settings',
