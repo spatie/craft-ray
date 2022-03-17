@@ -22,7 +22,7 @@
     ],
     "require": {
         "php": "^7.3|^7.4|^8.0",
-        "craftcms/cms": "^3.0.0",
+        "craftcms/cms": "^3.0.0|^4.0",
         "spatie/ray": "^1.19",
         "spatie/yii-ray": "^1.2"
     },
