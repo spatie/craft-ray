@@ -13,6 +13,7 @@ namespace Spatie\CraftRay;
 use Craft;
 use craft\base\Plugin;
 
+use craft\helpers\App;
 use Spatie\CraftRay\models\Settings;
 use Spatie\CraftRay\twigextensions\RayTwigExtension;
 
@@ -36,12 +37,13 @@ class CraftRay extends Plugin
 
         Yii::$container->set(Ray::class, function () {
             $craftRaySettings = CraftRay::getInstance()->getSettings();
+
             $settings = new \Spatie\Ray\Settings\Settings([
-                'enable' => $craftRaySettings->enable,
-                'host' => $craftRaySettings->host,
-                'port' => $craftRaySettings->port,
-                'remote_path' => $craftRaySettings->remote_path,
-                'local_path' => $craftRaySettings->local_path,
+                'enable' => App::parseBooleanEnv($craftRaySettings->enable),
+                'host' => App::parseEnv($craftRaySettings->host),
+                'port' => (int) App::parseEnv($craftRaySettings->port),
+                'remote_path' => App::parseEnv($craftRaySettings->remote_path),
+                'local_path' => App::parseEnv($craftRaySettings->local_path),
             ]);
 
             $ray = new Ray($settings);
