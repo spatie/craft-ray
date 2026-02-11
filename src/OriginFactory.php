@@ -9,7 +9,6 @@ use Spatie\Backtrace\Frame;
 use Spatie\Ray\Origin\DefaultOriginFactory;
 use Spatie\Ray\Origin\Origin;
 use Spatie\Ray\Ray;
-use Tightenco\Collect\Support\Collection;
 use yii\base\Component;
 use yii\base\Event;
 
@@ -27,9 +26,9 @@ class OriginFactory extends DefaultOriginFactory
 
     protected function getFrame(): ?Frame
     {
-        $frames = (new Collection(Backtrace::create()->frames()))->reverse();
+        $frames = array_reverse(Backtrace::create()->frames());
 
-        $indexOfRay = $frames->search(function (Frame $frame) {
+        $indexOfRay = $this->search($frames, function (Frame $frame) {
             if ($frame->class === Ray::class) {
                 return true;
             }
@@ -59,7 +58,6 @@ class OriginFactory extends DefaultOriginFactory
             $originFrame = $frames[$indexOfRay + 2] ?? null;
         }
 
-
         if (str_starts_with($originFrame->file, Craft::$app->getRuntimePath() . '/compiled_templates')) {
             return $this->replaceCompiledTemplatePathWithOriginalTemplatePath($originFrame);
         }
@@ -71,17 +69,29 @@ class OriginFactory extends DefaultOriginFactory
         return $originFrame;
     }
 
-    protected function findFrameForEvent(Collection $frames): ?Frame
+    /** @param Frame[] $frames */
+    protected function findFrameForEvent(array $frames): ?Frame
     {
-        $indexOfComponentCall = $frames
-            ->search(function (Frame $frame) {
-                return $frame->class === Component::class;
-            });
+        $indexOfComponentCall = $this->search($frames, function (Frame $frame) {
+            return $frame->class === Component::class;
+        });
 
         /** @var Frame $foundFrame */
         $foundFrame = $frames[$indexOfComponentCall + 1];
 
         return $foundFrame ?? null;
+    }
+
+    /** @param Frame[] $frames */
+    protected function search(array $frames, callable $callback): int|false
+    {
+        foreach ($frames as $index => $frame) {
+            if ($callback($frame)) {
+                return $index;
+            }
+        }
+
+        return false;
     }
 
     private function replaceCompiledTemplatePathWithOriginalTemplatePath(Frame $frame): Frame
