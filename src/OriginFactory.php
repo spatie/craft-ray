@@ -4,11 +4,9 @@ namespace Spatie\CraftRay;
 
 use Craft;
 use craft\helpers\StringHelper;
-use Spatie\Backtrace\Backtrace;
 use Spatie\Backtrace\Frame;
 use Spatie\Ray\Origin\DefaultOriginFactory;
 use Spatie\Ray\Origin\Origin;
-use Spatie\Ray\Ray;
 use yii\base\Component;
 use yii\base\Event;
 
@@ -19,40 +17,29 @@ class OriginFactory extends DefaultOriginFactory
         $frame = $this->getFrame();
 
         return new Origin(
-            $frame->file ?? null,
-            $frame->lineNumber ?? null,
+            $frame ? $frame->file : null,
+            $frame ? $frame->lineNumber : null,
         );
     }
 
     protected function getFrame(): ?Frame
     {
-        $frames = array_reverse(Backtrace::create()->frames());
+        $frames = $this->getAllFrames();
+        $indexOfRay = $this->getIndexOfRayFrame($frames);
 
-        $indexOfRay = $this->search(function (Frame $frame) {
-            if ($frame->class === Ray::class) {
-                return true;
-            }
+        /** @var Frame|null $originFrame */
+        $originFrame = $frames[$indexOfRay] ?? null;
 
-            if (str_starts_with($frame->file, __DIR__)) {
-                return true;
-            }
-
-            return false;
-        }, $frames);
-
-        if ($indexOfRay === null) {
+        if (! $originFrame) {
             return null;
         }
 
-        /** @var Frame|null $foundFrame */
-        $originFrame = $frames[$indexOfRay + 1] ?? null;
-
-        if ($originFrame && str_ends_with($originFrame->file, Ray::makePathOsSafe('ray/src/helpers.php'))) {
-            $originFrame = $frames[$indexOfRay + 2] ?? null;
+        if (is_null($originFrame->class) && $originFrame->method === 'call_user_func') {
+            $originFrame = $frames[$indexOfRay + 1] ?? null;
         }
 
-        if (is_null($originFrame->class) && $originFrame->method === 'call_user_func') {
-            $originFrame = $frames[$indexOfRay + 2] ?? null;
+        if (! $originFrame) {
+            return null;
         }
 
         if (str_starts_with($originFrame->file, Craft::$app->getRuntimePath() . '/compiled_templates')) {
