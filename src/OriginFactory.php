@@ -28,7 +28,7 @@ class OriginFactory extends DefaultOriginFactory
     {
         $frames = array_reverse(Backtrace::create()->frames());
 
-        $indexOfRay = $this->search($frames, function (Frame $frame) {
+        $indexOfRay = $this->search(function (Frame $frame) {
             if ($frame->class === Ray::class) {
                 return true;
             }
@@ -38,12 +38,9 @@ class OriginFactory extends DefaultOriginFactory
             }
 
             return false;
-        });
+        }, $frames);
 
-        /** @var Frame|null $rayFrame */
-        $rayFrame = $frames[$indexOfRay] ?? null;
-
-        if (! $rayFrame) {
+        if ($indexOfRay === null) {
             return null;
         }
 
@@ -72,26 +69,15 @@ class OriginFactory extends DefaultOriginFactory
     /** @param Frame[] $frames */
     protected function findFrameForEvent(array $frames): ?Frame
     {
-        $indexOfComponentCall = $this->search($frames, function (Frame $frame) {
+        $indexOfComponentCall = $this->search(function (Frame $frame) {
             return $frame->class === Component::class;
-        });
+        }, $frames);
 
-        /** @var Frame $foundFrame */
-        $foundFrame = $frames[$indexOfComponentCall + 1];
-
-        return $foundFrame ?? null;
-    }
-
-    /** @param Frame[] $frames */
-    protected function search(array $frames, callable $callback): int|false
-    {
-        foreach ($frames as $index => $frame) {
-            if ($callback($frame)) {
-                return $index;
-            }
+        if ($indexOfComponentCall === null) {
+            return null;
         }
 
-        return false;
+        return $frames[$indexOfComponentCall + 1] ?? null;
     }
 
     private function replaceCompiledTemplatePathWithOriginalTemplatePath(Frame $frame): Frame
