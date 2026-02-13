@@ -14,6 +14,9 @@
 
 # MISC FILES
 .cache
+.php_cs.cache
+.php-cs-fixer.cache
+.phpunit.cache
 .DS_Store
 .idea
 .project
