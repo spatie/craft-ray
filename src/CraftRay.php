@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ray plugin for Craft CMS 4.x
  *
@@ -12,11 +13,9 @@ namespace Spatie\CraftRay;
 
 use Craft;
 use craft\base\Plugin;
-
 use craft\helpers\App;
 use Spatie\CraftRay\models\Settings;
 use Spatie\CraftRay\twigextensions\RayTwigExtension;
-
 use Spatie\Ray\Payloads\Payload;
 use Yii;
 

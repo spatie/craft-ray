@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ray plugin for Craft CMS 3.x
  *
@@ -67,7 +68,7 @@ class RayTwigExtension extends AbstractExtension implements GlobalsInterface
     public function getGlobals(): array
     {
         return [
-            'ray' => new RayVariable,
+            'ray' => new RayVariable(),
         ];
     }
 }
