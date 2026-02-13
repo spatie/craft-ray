@@ -4,6 +4,14 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](http://keepachangelog.com/) and this project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.1.4 - 2026-02-13
+
+### What's Changed
+
+* Fix search() method signature to match parent by @freekmurze in https://github.com/spatie/craft-ray/pull/18
+
+**Full Changelog**: https://github.com/spatie/craft-ray/compare/2.1.3...2.1.4
+
 ## 2.1.3 - 2026-02-11
 
 - Remove tightenco/collect usage from OriginFactory
