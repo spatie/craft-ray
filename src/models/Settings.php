@@ -1,4 +1,5 @@
 <?php
+
 /**
  * ray plugin for Craft CMS 3.x
  *
